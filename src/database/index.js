@@ -16,11 +16,7 @@ client.connect();
 
 // exportamos nossa query para conseguirmos trabalhar com nossa query dentro do nosso repository
 
-exports.query = async (query) => {
-  const { rows } = await client.query(query);
+exports.query = async (query, values) => {
+  const { rows } = await client.query(query, values);
   return rows;
 };
-
-client
-  .query("SELECT * FROM contacts;")
-  .then((result) => console.log(result.rows));

@@ -1,23 +1,26 @@
+/* eslint-disable quotes */
 /* eslint-disable import/no-extraneous-dependencies */
-const { v4 } = require('uuid');
+const { v4 } = require("uuid");
 
 // mock de cadastro de contatos sem banco de dados
 let contacts = [
   {
     id: v4(),
-    name: 'Jhonathan',
-    email: 'jhonsmith@gmail.com',
-    phone: '1212121212',
+    name: "Jhonathan",
+    email: "jhonsmith@gmail.com",
+    phone: "1212121212",
     category_id: v4(),
   },
   {
     id: v4(),
-    name: 'Jhonathan amaral',
-    email: 'jhonsmisadasdsth@gmail.com',
-    phone: '1212121212',
+    name: "Jhonathan amaral",
+    email: "jhonsmisadasdsth@gmail.com",
+    phone: "1212121212",
     category_id: v4(),
   },
 ];
+
+const db = require("../../database");
 
 class ContactsRepository {
   findAll() {
@@ -47,20 +50,16 @@ class ContactsRepository {
 
   // Recebemos os item que veio da nossa controller e criamos o nosso contato
 
-  create({
-    name, email, phone, category_id,
-  }) {
-    return new Promise((resolve) => {
-      const newContact = {
-        id: v4(),
-        name,
-        email,
-        phone,
-        category_id,
-      };
-      contacts.push(newContact);
-      resolve(newContact);
-    });
+  async create({ name, email, phone, category_id }) {
+    const [row] = await db.query(
+      `
+    INSERT INTO contacts( name,email,phone,category_id)
+    VALUES($1, $2, $3, $4)
+    RETURNING *
+    `,
+      [name, email, phone, category_id]
+    );
+    return row;
   }
 }
 

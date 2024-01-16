@@ -20,9 +20,12 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    'no-console': 'off',
+    // eslint-disable-next-line quotes
+    "no-console": "off",
     'class-methods-use-this': 'off',
     'consistent-return': 'off',
     camelcase: 'off',
+    'object-curly-newline': 'off',
+    'comma-dangle': 'off',
   },
 };
