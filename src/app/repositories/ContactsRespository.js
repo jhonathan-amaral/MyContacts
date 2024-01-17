@@ -1,53 +1,41 @@
 /* eslint-disable quotes */
 /* eslint-disable import/no-extraneous-dependencies */
-const { v4 } = require("uuid");
-
-// mock de cadastro de contatos sem banco de dados
-let contacts = [
-  {
-    id: v4(),
-    name: "Jhonathan",
-    email: "jhonsmith@gmail.com",
-    phone: "1212121212",
-    category_id: v4(),
-  },
-  {
-    id: v4(),
-    name: "Jhonathan amaral",
-    email: "jhonsmisadasdsth@gmail.com",
-    phone: "1212121212",
-    category_id: v4(),
-  },
-];
 
 const db = require("../../database");
 
 class ContactsRepository {
-  findAll() {
-    return new Promise((resolve) => {
-      resolve(contacts);
-    });
+  async findAll(orderBy = "ASC") {
+    const direction = orderBy.toUpperCase() === "DESC" ? "DESC" : "ASC";
+    const rows = await db.query(
+      `SELECT * FROM contacts ORDER BY name ${direction}`
+    );
+    return rows;
   }
 
-  findById(id) {
-    return new Promise((resolve) => {
-      resolve(contacts.find((contact) => contact.id === id));
-    });
+  async findById(id) {
+    const [row] = await db.query("SELECT * FROM contacts WHERE id = $1 ", [id]);
+    return row;
   }
 
-  findByEmail(email) {
-    return new Promise((resolve) => {
-      resolve(contacts.find((contact) => contact.email === email));
-    });
+  async findByEmail(email) {
+    const [row] = await db.query("SELECT * FROM contacts WHERE email = $1 ", [
+      email,
+    ]);
+    return row;
   }
 
-  delete(id) {
-    return new Promise((resolve) => {
-      contacts = contacts.filter((contact) => contact.id !== id);
-      resolve();
-    });
+  async update(id, { name, email, phone, category_id }) {
+    const [row] = await db.query(
+      `
+    UPDATE contacts
+    SET name = $1, email = $2, phone = $3, category_id = $4
+    WHERE id = $5
+    RETURNING *
+    `,
+      [name, email, phone, category_id, id]
+    );
+    return row;
   }
-
   // Recebemos os item que veio da nossa controller e criamos o nosso contato
 
   async create({ name, email, phone, category_id }) {
@@ -60,6 +48,12 @@ class ContactsRepository {
       [name, email, phone, category_id]
     );
     return row;
+  }
+
+  async delete(id) {
+    const deleteOp = await db.query("DELETE FROM contacts WHERE id =$1", [id]);
+
+    return deleteOp;
   }
 }
 

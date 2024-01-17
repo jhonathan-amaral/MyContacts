@@ -4,28 +4,29 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: 'airbnb-base',
+  extends: "airbnb-base",
   overrides: [
     {
       env: {
         node: true,
       },
-      files: ['.eslintrc.{js,cjs}'],
+      files: [".eslintrc.{js,cjs}"],
       parserOptions: {
-        sourceType: 'script',
+        sourceType: "script",
       },
     },
   ],
   parserOptions: {
-    ecmaVersion: 'latest',
+    ecmaVersion: "latest",
   },
   rules: {
     // eslint-disable-next-line quotes
     "no-console": "off",
-    'class-methods-use-this': 'off',
-    'consistent-return': 'off',
-    camelcase: 'off',
-    'object-curly-newline': 'off',
-    'comma-dangle': 'off',
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    camelcase: "off",
+    "object-curly-newline": "off",
+    "comma-dangle": "off",
+    quotes: "off",
   },
 };
