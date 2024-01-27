@@ -50,5 +50,3 @@ yarn dev
 * LinkedIn: [@jhonathan-amaral](https://linkedin.com/in/jhonathan-amaral)
 
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
