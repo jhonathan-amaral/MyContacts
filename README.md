@@ -49,9 +49,6 @@ yarn dev
 * Github: [@jhonathan-amaral](https://github.com/jhonathan-amaral)
 * LinkedIn: [@jhonathan-amaral](https://linkedin.com/in/jhonathan-amaral)
 
-## Show your support
-
-Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
