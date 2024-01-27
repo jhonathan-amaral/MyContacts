@@ -8,7 +8,7 @@
 
 # API de Gerenciamento de Contatos
 
-Esta API permite o gerenciamento de contatos, incluindo a criação, edição, remoção e a opção de inserir a categoria do contato.
+Esta API foi criada junto ao curso JStack com os ensinamentos do professor mateus silva com esta apir ela nos permite fazer o gerenciamento de contatos, incluindo a criação, edição, remoção e a opção de inserir a categoria do contato.
 
 ## Endpoints
 
