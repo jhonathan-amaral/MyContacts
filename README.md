@@ -39,7 +39,7 @@ comando docker docker run --name pg -e POSTGRES_USER=root -e POSTGRES_PASSWORD=r
 ## Usage
 
 ```sh
-yarn dev
+yarn dev 
 ```
 
 ## Author
